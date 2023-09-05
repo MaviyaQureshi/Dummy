@@ -1,14 +1,41 @@
+import { useEffect, useState } from 'react';
 import './CSS/Content.css';
 
 const Content = () => {
+
+    const [data, setData] = useState([])
+
+    const news = () => {
+        var url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=14c328bfa57949a2a2033883cc99d596";
+        var req = new Request(url);
+        return fetch(req).then((response) => response.json()).then((d) => setData(d.articles))
+    }
+
+    useEffect(() => {
+        news()
+    }, [])
+
+    const titleArray = []
+    const descriptionArray = []
+    const urlArray = []
+
+    for (var i = 0; i < data.length; i++) {
+        titleArray.push([data[i].title, data[i].url, data[i].description]);
+    }
+    var count = 0
+    const List = titleArray.map((article) =>
+        <span className="article-vessel" key={article[0]}>
+            <div className="content">
+                <a href={article[1]}><h3>{article[0]}</h3></a>
+                {article[2]}
+            </div>
+        </span>
+    );
+
     return (
         <>
             <span className="main-container">
-                <span className="article-vessel">
-                    <div className="content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, cumque quibusdam aliquam tempora dolore quia, dolorum blanditiis at molestias, placeat deleniti. Omnis saepe, adipisci natus, praesentium quidem eligendi iste dolorem odio facere dolorum ducimus vero optio iusto ratione ullam itaque! Nostrum quibusdam assumenda provident sit deserunt debitis illum aliquam reiciendis ab ea possimus qui, corrupti quia voluptatibus? Sapiente repudiandae necessitatibus vitae animi laudantium officia, corporis officiis voluptatibus alias nostrum molestias ullam, vel eum ab incidunt harum quaerat! Architecto, officiis ullam voluptate quia amet quam quidem pariatur, consequatur incidunt error sint minima quas expedita ipsam iure rem cupiditate temporibus hic autem deserunt. Amet exercitationem error maxime fugiat cumque facilis adipisci distinctio at harum magni, voluptatem iusto quod perspiciatis, debitis aperiam perferendis? Eaque quasi totam temporibus expedita illum magni similique debitis eos corporis corrupti! Ipsam accusantium minima animi alias saepe! Consequuntur voluptas delectus ratione? Velit, beatae! Pariatur enim dolor ducimus reiciendis autem vero consectetur odio eius placeat! Quibusdam commodi, esse assumenda doloremque modi itaque consequuntur quod ut facere nobis id, repellendus repudiandae minima, ea dicta? Optio, ab quia nesciunt ratione voluptas sit ducimus sunt, doloribus repudiandae ea ipsum placeat asperiores, suscipit quisquam? Ea excepturi laudantium sit officia sapiente temporibus, distinctio alias itaque!
-                    </div>
-                </span>
+                {List}
             </span>
         </>
     )

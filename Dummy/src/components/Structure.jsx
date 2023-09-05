@@ -5,10 +5,10 @@ import TBD from './TBD';
 
 const Structure = () => {
     return (
-        <body className="container">
+        <div className="container">
             <span className="vessel">
                 <div className="radiobuttons">
-                    <RadioButtons />
+                    {/* <RadioButtons /> */}
                 </div>
                 <div className="main-content">
                     <Content />
@@ -17,7 +17,7 @@ const Structure = () => {
                     <TBD />
                 </div>
             </span>
-        </body>
+        </div>
     )
 }
 
