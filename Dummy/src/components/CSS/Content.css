@@ -1,0 +1,23 @@
+.main-container{
+    width: 900px;
+    height: 550px;
+    background-color: rgb(152, 255, 152);
+    margin-top: 100px;
+    margin-bottom: -100px;
+    margin-left: 230px;
+    overflow-y: scroll;
+}
+
+.article-vessel{
+    background-color: white;
+    margin: 10px 10px 0px 10px;
+    border-radius: 50px;
+    height: 100px;
+}
+
+.content{
+    padding-left: 35px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
